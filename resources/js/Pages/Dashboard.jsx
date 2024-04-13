@@ -74,35 +74,22 @@ export default function Dashboard({
                             <h3 className="text-amber-600 text-xl font-semibold">
                                 My Active Task
                             </h3>
-                            <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-800">
-                                <thead className="text-xs    dark:text-gray-600 ">
-                                    <tr>
-                                        <th scope="col" class="px-6 py-3">
-                                            ID
-                                        </th>
-                                        <th scope="col" class="px-6 py-3">
-                                            Project Name
-                                        </th>
-                                        <th scope="col" class="px-6 py-3">
-                                            Name
-                                        </th>
-                                        <th scope="col" class="px-6 py-3">
-                                            Assgined User
-                                        </th>
-                                        <th scope="col" class="px-6 py-3">
-                                            {" "}
-                                            Status
-                                        </th>
-                                        <th scope="col" class="px-6 py-3">
-                                            Due Date
-                                        </th>
+                            <table className="w-full text-sm text-left rtl:text-right text-gray-950 dark:text-gray-600">
+                                <thead className="w-full">
+                                    <tr className="text-nowrap">
+                                        <th class="px-3 py-2">ID</th>
+                                        <th class="px-3 py-2">Project Name</th>
+                                        <th class="px-3 py-2">Name</th>
+                                        <th class="px-3 py-2">Assgined User</th>
+                                        <th class="px-3 py-2"> Status</th>
+                                        <th class="px-3 py-2">Due Date</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {activeTasks.data.map((task) => (
                                         <tr
+                                            className="bg-white border-b"
                                             key={task.id}
-                                            className="text-nowrap"
                                         >
                                             <td className="px-3 py-2">
                                                 {task.id}
