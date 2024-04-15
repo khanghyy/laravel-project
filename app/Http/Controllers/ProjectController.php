@@ -55,12 +55,10 @@ class ProjectController extends Controller
     public function store(StoreProjectRequest $request)
     {
         $data = $request->validated();
-        $image = $data['image'] ?? null;
         $data['created_by'] = Auth::id();
         $data['updated_by'] = Auth::id();
-        if ($image) {
-            $data['image_path'] = $image->store('project/' . Str::random(), 'public');
-        }
+        dd($data);
+
         Project::create($data);
         return to_route('project.index')->with('success', 'Project created successfully');
     }
