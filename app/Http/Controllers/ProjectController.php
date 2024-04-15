@@ -57,7 +57,7 @@ class ProjectController extends Controller
         $data = $request->validated();
         $data['created_by'] = Auth::id();
         $data['updated_by'] = Auth::id();
-        dd($data);
+
 
         Project::create($data);
         return to_route('project.index')->with('success', 'Project created successfully');
