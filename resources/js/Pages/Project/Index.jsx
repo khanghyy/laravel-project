@@ -218,7 +218,7 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                                                 </td>
                                                 <td className="px-3 py-2">
                                                     <img
-                                                        src={`${process.env.REACT_APP_SERVER_URL}/${project.image_path}`}
+                                                        src={project.image_path}
                                                         style={{ width: 60 }}
                                                     />
                                                 </td>
