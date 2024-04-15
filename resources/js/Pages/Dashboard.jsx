@@ -121,7 +121,7 @@ export default function Dashboard({
                                                 {task.assignedUser.name}
                                             </td>
 
-                                            <td className="px-3 py-2 flex-nowrap">
+                                            <td className="px-3 py-2 text-nowrap">
                                                 <span
                                                     className={
                                                         "px-2 py-1  rounded-md w-1 text-black " +
