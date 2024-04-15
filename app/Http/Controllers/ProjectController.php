@@ -57,8 +57,10 @@ class ProjectController extends Controller
         $data = $request->validated();
         $data['created_by'] = Auth::id();
         $data['updated_by'] = Auth::id();
-
-
+        $image = $data['image'] ?? null;
+        if ($image) {
+            $data['image_path'] = $request->file('image')->store('images', 'public');
+        }
         Project::create($data);
         return to_route('project.index')->with('success', 'Project created successfully');
     }
