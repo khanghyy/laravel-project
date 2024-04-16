@@ -52,6 +52,7 @@ class ProjectController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+
     public function store(StoreProjectRequest $request)
     {
         $data = $request->validated();
@@ -59,11 +60,15 @@ class ProjectController extends Controller
         $data['updated_by'] = Auth::id();
         $image = $data['image'] ?? null;
         if ($image) {
-            $data['image_path'] = $request->file('image')->store('images', 'public');
+            $file = $request->file('image');
+            $file_name = time() . '.' . $file->getClientOriginalName();
+            $file->move(public_path('images'), $file_name);
+            $data['image_path'] = 'images/' . $file_name; // store the relative path to the image
         }
         Project::create($data);
-        return to_route('project.index')->with('success', 'Project created successfully');
+        return redirect()->route('project.index')->with('success', 'Project created successfully');
     }
+
 
     /**
      * Display the specified resource.
@@ -90,7 +95,7 @@ class ProjectController extends Controller
             "tasks" => TaskResource::collection($tasks),
             'queryParams' => request()->query() ?: null,
             'success' => session('success'),
-            'imagePath' => $project->image_path,
+
         ]);
     }
 
@@ -107,22 +112,27 @@ class ProjectController extends Controller
     /**
      * Update the specified resource in storage.
      */
+
     public function update(UpdateProjectRequest $request, Project $project)
     {
         $data = $request->validated();
-        $image = $data['image'] ?? null;
         $data['updated_by'] = Auth::id();
+        $image = $data['image'] ?? null;
         if ($image) {
             if ($project->image_path) {
-                Storage::disk('public')->deleteDirectory(dirname($project->image_path));
+                Storage::disk('public')->delete($project->image_path);
+            } else {
+                $file = $request->file('image');
+                $file_name = time() . '.' . $file->getClientOriginalName();
+                $file->move(public_path('images'), $file_name);
+                $data['image_path'] = 'images/' . $file_name;
             }
-            $data['image_path'] = $image->store('Project/' . Str::random(), 'public');
         }
         $project->update($data);
-
-        return to_route('project.index')
+        return redirect()->route('project.index')
             ->with('success', "Project \"$project->name\" was updated");
     }
+
 
     /**
      * Remove the specified resource from storage.

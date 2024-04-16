@@ -9,13 +9,7 @@ import {
 import { Head, Link, router } from "@inertiajs/react";
 import TableHeading from "@/Components/TableHeading";
 
-export default function Index({
-    auth,
-    projects,
-    queryParams = null,
-    success,
-    image_path,
-}) {
+export default function Index({ auth, projects, queryParams = null, success }) {
     queryParams = queryParams || {};
     const searchFieldChanged = (name, value) => {
         if (value) {
@@ -224,7 +218,7 @@ export default function Index({
                                                 </td>
                                                 <td className="px-3 py-2">
                                                     <img
-                                                        src={image_path}
+                                                        src={project.image_path}
                                                         style={{ width: 60 }}
                                                     />
                                                 </td>

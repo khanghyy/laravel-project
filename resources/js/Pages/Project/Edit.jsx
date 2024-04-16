@@ -8,7 +8,7 @@ import { Head, Link, useForm } from "@inertiajs/react";
 
 export default function Create({ auth, project }) {
     const { data, setData, post, errors, reset } = useForm({
-        image: "",
+        image: project.image_path || "",
         name: project.name || "",
         status: project.status || "",
         description: project.description || "",
@@ -46,7 +46,7 @@ export default function Create({ auth, project }) {
                                 <div className="mb-4">
                                     <img
                                         src={project.image_path}
-                                        className="w-64"
+                                        style={{ width: 60 }}
                                     />
                                 </div>
                             )}
@@ -144,6 +144,7 @@ export default function Create({ auth, project }) {
                                 <SelectInput
                                     name="status"
                                     id="project_status"
+                                    value={data.status}
                                     className="mt-1 block w-full"
                                     onChange={(e) =>
                                         setData("status", e.target.value)
