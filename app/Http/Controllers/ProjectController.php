@@ -90,6 +90,7 @@ class ProjectController extends Controller
             "tasks" => TaskResource::collection($tasks),
             'queryParams' => request()->query() ?: null,
             'success' => session('success'),
+            'imagePath' => $project->image_path,
         ]);
     }
 
