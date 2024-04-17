@@ -118,17 +118,19 @@ class ProjectController extends Controller
         $data = $request->validated();
         $data['updated_by'] = Auth::id();
         $image = $data['image'] ?? null;
+
         if ($image) {
             if ($project->image_path) {
                 Storage::disk('public')->delete($project->image_path);
             } else {
                 $file = $request->file('image');
                 $file_name = time() . '.' . $file->getClientOriginalName();
-                $file->move(public_path('images'), $file_name);
+                $file->storeAs('public/images', $file_name);
                 $data['image_path'] = 'images/' . $file_name;
             }
         }
         $project->update($data);
+
         return redirect()->route('project.index')
             ->with('success', "Project \"$project->name\" was updated");
     }
