@@ -8,13 +8,19 @@ import { Head, Link, useForm } from "@inertiajs/react";
 
 export default function Create({ auth, project }) {
     const { data, setData, post, errors, reset } = useForm({
-        image: project.image_path || "",
+        image: "",
         name: project.name || "",
         status: project.status || "",
         description: project.description || "",
         due_date: project.due_date || "",
         _method: "PUT",
     });
+    const onFileChange = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            setData("image", file);
+        }
+    };
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -45,11 +51,13 @@ export default function Create({ auth, project }) {
                             {project.image_path && (
                                 <div className="mb-4">
                                     <img
-                                        src={project.image_path}
-                                        style={{ width: 60 }}
+                                        src={`http://localhost/${project.image_path}`}
+                                        alt="Project"
+                                        className="w-full h-64 object-cover object-center rounded-lg shadow-md"
                                     />
                                 </div>
                             )}
+
                             <div>
                                 <InputLabel
                                     htmlFor="project_image_path"
@@ -60,9 +68,7 @@ export default function Create({ auth, project }) {
                                     type="file"
                                     name="image"
                                     className="mt-1 block w-full"
-                                    onChange={(e) =>
-                                        setData("image", e.target.files[0])
-                                    }
+                                    onChange={(e) => onFileChange(e)}
                                 />
                                 <InputError
                                     message={errors.image}

@@ -17,8 +17,8 @@ export default function Show({ auth, project, tasks, queryParams = null }) {
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div>
                             <img
-                                src={project.image_path}
-                                alt={project.name}
+                                src={`http://localhost/${project.image_path}`}
+                                alt="Project"
                                 className="w-full h-64 object-cover object-center rounded-lg shadow-md"
                             />
                         </div>

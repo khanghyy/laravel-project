@@ -78,7 +78,7 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                         <div className="p-6 text-gray-900 dark:text-gray-100">
                             <div className="overflow-auto">
                                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                    <thead className="text-xs text-gray-700 uppercase bg-gray-50  dark:text-gray-800 border-b-2 border-gray-500">
+                                    <thead className="text-xs text-gray-700 uppercase">
                                         <tr className="text-nowrap">
                                             <TableHeading
                                                 name="id"
@@ -152,7 +152,7 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                                             </th>
                                         </tr>
                                     </thead>
-                                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:text-gray-400 border-b-2 border-gray-500">
+                                    <thead className="text-xs text-gray-700 uppercase">
                                         <tr className="text-nowrap">
                                             <th className="px-3 py-3"></th>
                                             <th className="px-3 py-3"></th>
@@ -219,7 +219,10 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                                                 <td className="px-3 py-2">
                                                     <img
                                                         src={project.image_path}
-                                                        style={{ width: 60 }}
+                                                        style={{
+                                                            width: 60,
+                                                            borderRadius: 12,
+                                                        }}
                                                     />
                                                 </td>
                                                 <th className="px-3 py-2 text-gray-800 text-nowrap hover:underline">
