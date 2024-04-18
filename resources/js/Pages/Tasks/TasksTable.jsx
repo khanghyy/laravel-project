@@ -147,7 +147,7 @@ export default function TasksTable({
                                 <td className="px-3 py-2">{task.id}</td>
                                 <td className="px-3 py-2">
                                     <img
-                                        src={task.image_path}
+                                        src={`http://localhost/${task.image_path}`}
                                         alt={task.name}
                                         style={{
                                             width: 60,

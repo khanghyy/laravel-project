@@ -68,7 +68,10 @@ class TaskController extends Controller
         $data['updated_by'] = Auth::id();
 
         if ($image) {
-            $data['image_path'] = $image->store('task/' . Str::random(), 'public');
+            $file = $request->file('image');
+            $file_name = time() . '.' . $file->getClientOriginalName();
+            $file->move(public_path('images'), $file_name);
+            $data['image_path'] = 'images/' . $file_name;
         }
         Task::create($data);
         return to_route('task.index')->with('success', 'task created successfully');
@@ -112,7 +115,10 @@ class TaskController extends Controller
             if ($task->image_path) {
                 Storage::disk('public')->deleteDirectory(dirname($task->image_path));
             }
-            $data['image_path'] = $image->store('task/' . Str::random(), 'public');
+            $file = $request->file('image');
+            $file_name = time() . '.' . $file->getClientOriginalName();
+            $file->move(public_path('images'), $file_name);
+            $data['image_path'] = 'images/' . $file_name;
         }
         $task->update($data);
 

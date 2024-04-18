@@ -47,8 +47,8 @@ export default function Create({ auth, task, projects, users }) {
                             {task.image_path && (
                                 <div className="mb-4">
                                     <img
-                                        src={task.image_path}
-                                        className="w-64 bg-cover"
+                                        src={`http://localhost/${task.image_path}`}
+                                        className="w-full h-64 object-cover object-center rounded-lg shadow-md"
                                     />
                                 </div>
                             )}

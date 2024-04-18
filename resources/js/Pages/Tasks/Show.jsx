@@ -22,7 +22,7 @@ export default function Show({ auth, task }) {
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div>
                             <img
-                                src={task.image_path}
+                                src={`http://localhost/${task.image_path}`}
                                 alt={task.name}
                                 className="w-full h-64 object-cover object-center rounded-lg shadow-md"
                             />

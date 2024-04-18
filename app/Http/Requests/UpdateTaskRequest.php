@@ -25,7 +25,7 @@ class UpdateTaskRequest extends FormRequest
         return [
             'name' => ['required', 'max:255'],
             'description' => ['nullable', 'string'],
-            'image' => ['nullable', 'image'],
+            'image' => ['nullable', 'image', 'mimes:png,jpg,jpeg,gif,svg', 'max:2048'],
             'status' => [
                 'required',
                 Rule::in(['pending', 'in_progress', 'completed'])
